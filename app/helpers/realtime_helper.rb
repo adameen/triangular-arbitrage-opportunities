@@ -1,0 +1,2 @@
+module RealtimeHelper
+end

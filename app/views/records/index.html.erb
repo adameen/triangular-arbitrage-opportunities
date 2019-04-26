@@ -1,0 +1,53 @@
+<div id="top-panel">
+  <h1>Historical triangular arbitrage data</h1>
+
+  <div id="options">
+    <!-- Form for picking date -->
+    <div class="input-datepicker">
+      <%= form_with scope: :record, local: true do |f| %>
+        <%= f.text_field :date, placeholder: "Choose date"%>
+        <%= f.submit "OK"%>
+      <% end %>
+    </div>
+
+    <!-- Description of this page -->
+    <p class= "history-description">
+      One record in the table corresponds to the best triangular arbitrage
+      opportunity on specific cryptocurrency exchange during specific
+      hour of the selected day (UTC time). The graph corresponds to the table.
+    </p>
+
+    <!-- Realtime data button -->
+    <%= link_to "REALTIME DATA", realtime_path, class: "button-realtime" %>
+  </div>
+
+</div>
+
+<!-- Chart -->
+<canvas id="data-chart"></canvas>
+
+<!-- Table with historical data -->
+<table id="historyTable">
+    <tr>
+      <th>Time</th>
+      <th>Profit (%) incl. fees</th>
+      <th>Triangle</th>
+      <th>Exchange</th>
+      <th>Pair #1</th>
+      <th>Pair #2</th>
+      <th>Pair #3</th>
+    </tr>
+
+
+  <% @records.each do |record| %>
+    <tr class="history-record">
+      <td class="record-date"><%= record.date %></td>
+      <td class="record-profit"><%= record.profit %></td>
+      <td class="record-triangle-name"><%= record.triangle_name %></td>
+      <td class="record-exchange-name"><%= record.exchange %></td>
+      <td><%= record.pair1 %></td>
+      <td><%= record.pair2 %></td>
+      <td><%= record.pair3 %></td>
+    </tr>
+  <% end %>
+</table>

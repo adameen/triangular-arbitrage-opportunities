@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  triangle_name: MyString
+  pair1: MyString
+  pair2: MyString
+  pair3: MyString
+  profit: 1.5
+  exchange: MyString
+  date: 2019-04-18 09:33:15
+
+two:
+  triangle_name: MyString
+  pair1: MyString
+  pair2: MyString
+  pair3: MyString
+  profit: 1.5
+  exchange: MyString
+  date: 2019-04-18 09:33:15

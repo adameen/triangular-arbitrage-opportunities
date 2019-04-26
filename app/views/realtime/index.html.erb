@@ -1,0 +1,57 @@
+<div id="top-panel">
+  <h1>Realtime triangular arbitrage opportunities</h1>
+
+  <div id="options">
+    <!-- Radio buttons for choosing the exchange -->
+    <div class="container-exchanges">
+      <div class="radio-tile-group">
+
+        <div class="input-container">
+          <input id="bittrex" class="radio-button" type="radio" name="exchange" checked/>
+          <div class="radio-tile-exchanges">
+            <label for="bittrex" class="radio-tile-label">Bittrex</label>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <input id="kraken" class="radio-button" type="radio" name="exchange" />
+          <div class="radio-tile-exchanges">
+            <label for="kraken" class="radio-tile-label">Kraken</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Radio buttons for choosing the triangles order (sort type) -->
+    <div class="container-sort">
+      <div class="radio-tile-group">
+
+        <div class="input-container">
+          <input id="show-best" class="radio-button" type="radio" name="order" checked/>
+          <div class="radio-tile-sort-best">
+            <label for="show-best" class="radio-tile-label">Best △</label>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <input id="show-worst" class="radio-button" type="radio" name="order" />
+          <div class="radio-tile-sort-worst">
+            <label for="show-worst" class="radio-tile-label">Worst △</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Historical data button -->
+    <%= link_to "HISTORICAL DATA", records_path, class: "button-history" %>
+  </div>
+
+</div>
+
+<!-- Space for showing errors -->
+<div class="error-container"></div>
+
+<!-- Table with realtime data -->
+<table id="realtimeTable">
+  <!-- The table is generated on client's side based on websocket messages -->
+</table>
