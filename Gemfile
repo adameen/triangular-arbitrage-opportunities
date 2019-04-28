@@ -32,8 +32,8 @@ gem 'jquery-rails'
 # mainly for datepicker in History data and other possible future elements
 gem 'jquery-ui-rails', '5.0.5'
 
-# not used for now
-gem "bulma-rails", "~> 0.7.4"
+# not used for now - nice css graphics
+# gem "bulma-rails", "~> 0.7.4"
 
 # for creating charts in historical data page
 # https://www.chartjs.org
