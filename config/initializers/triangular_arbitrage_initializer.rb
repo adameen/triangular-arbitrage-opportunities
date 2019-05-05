@@ -1,5 +1,5 @@
 
-class TriangularArbitrageStarter
+class TriangularArbitrageInitializer
 
   def start_all_channels
     Thread.new do
@@ -125,4 +125,4 @@ class TriangularArbitrageStarter
 end
 
 # Create starter object and start broadcasting.
-TriangularArbitrageStarter.new.start_all_channels
+TriangularArbitrageInitializer.new.start_all_channels

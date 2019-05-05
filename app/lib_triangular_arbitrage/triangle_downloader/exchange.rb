@@ -102,7 +102,7 @@ module TriangleDownloader
     end
 
     def set_endpoint
-      @endpoint = ""
+      raise "set_endpoint method NOT implemented in TriangleDownloader::Exchange"
     end
 
     def create_pairs
