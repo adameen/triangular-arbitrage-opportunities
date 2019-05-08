@@ -35,7 +35,7 @@ Cryptocurrency Triangular Arbitrage Opportunities web application computes poten
 ## Launch the application
 1. Launch the server:  
 `bin/rails server`
-2. Connect with web browser to: <localhost:3000>
+2. Connect with web browser to: http://localhost:3000
 
 ## GUI Snapshots
 ### Realtime page
