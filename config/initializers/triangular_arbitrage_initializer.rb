@@ -38,8 +38,6 @@ class TriangularArbitrageInitializer
           check_highest_profit(exchange_name, ex)
         end
       end
-      puts "\n\n@highest_profit Bittrex: #{@highest_profits["Bittrex"]}"
-      puts "@highest_profits Kraken: #{@highest_profits["Kraken"]}\n\n"
       # now I have triangle_profits arrays of all the exchanges prepared
       sleep 1
       i = i + 1
@@ -74,11 +72,11 @@ class TriangularArbitrageInitializer
   end
 
   def check_hours
-    puts "\nchecking hours\n"
+    puts "\n[TriangularArbitrageInitializer] Checking hours\n"
     current_hour = DateTime.now.utc.hour
     # if it is next hour
     if current_hour != @last_hour
-      puts "\nIT IS NEW HOUR\n"
+      puts "\n[TriangularArbitrageInitializer] It is a new hour of the day\n"
       @exchanges.each do |exchange_name, exchange_object|
         if @highest_profits[exchange_name][:profit] != @template_profit[:profit]
           save_last_hour_record(exchange_name)
@@ -92,10 +90,10 @@ class TriangularArbitrageInitializer
 
   # Check if the present best profit is better then the so far best
   def check_highest_profit(exchange_name, exchange)
-    puts "\ncheck_highest_profit for #{exchange_name}"
+    puts "\n[TriangularArbitrageInitializer] Checking highest profit for #{exchange_name}"
 
     current_best_triangle = exchange.triangle_profits[0]
-    puts "current_best_triangle: #{current_best_triangle}"
+    puts "[TriangularArbitrageInitializer] Best triangle for #{exchange_name}: #{current_best_triangle}"
     # if the present profit is better than the up to now best one
     # then set it as the best one
     if current_best_triangle[1].profit > @highest_profits[exchange_name][:profit]
@@ -112,15 +110,13 @@ class TriangularArbitrageInitializer
   # Saves the best record from the last 1 hour time window to database.
   def save_last_hour_record(exchange_name)
     record = Record.new(@highest_profits[exchange_name])
-    puts "Created model record: #{record}"
     if record.save
-      puts "\n\n\nRECORD WAS SUCCESSFULLY SAVED TO DATABASE\n\n\n"
+      puts "\n\n\n[TriangularArbitrageInitializer] The new record was successfully saved to database\n\n\n"
     else
-      puts "\n\n\nRECORD WAS NOT SUCCESSFULLY SAVED TO DATABASE\n\n\n"
+      puts "\n\n\n[TriangularArbitrageInitializer] The new record was NOT successfully saved to database\n\n\n"
     end
     @highest_profits[exchange_name] = @template_profit.clone
   end
-
 
 end
 

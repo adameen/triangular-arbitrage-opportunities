@@ -17,6 +17,3 @@
 //= require_tree .
 //= require jquery-ui/datepicker
 //= require Chart.min
-
-
-console.log("Text from application.js");

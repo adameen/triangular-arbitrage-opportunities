@@ -120,5 +120,4 @@ module TriangleDownloader
     end
 
   end # end of Exchange class
-
 end # end of module

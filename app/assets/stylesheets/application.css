@@ -31,8 +31,6 @@
   padding-bottom: 5.5rem;    /* Footer height */
 }
 
-
-
 h1 {
   font-weight:200;
   text-align: center;
@@ -41,7 +39,6 @@ h1 {
   font-size: 3em;
   padding-top: 0.3em;
   padding-bottom: 0.3em;
-   /* border: 1px solid pink; */
 }
 
 #top-panel{
@@ -49,10 +46,8 @@ h1 {
   position: sticky;
   top: 0;
   background-color:rgba(255, 255, 255, 1);
-
   margin-bottom: 2em;
   z-index: 1;
-  /* border-bottom: 1px solid #cccccc; */
 }
 
 #options{
@@ -63,7 +58,6 @@ h1 {
   flex-wrap: wrap;
   flex-direction: row;
   min-height: 8em;
-  /* border: 1px solid violet; */
 }
 
 table {
@@ -72,7 +66,6 @@ table {
   padding: 2em;
   margin: auto;
   margin-bottom: 3em;
-  /* margin-top: 3em; */
   width: 80%;
 }
 
@@ -85,7 +78,6 @@ th {
 
 td {
   font-weight:200;
-  /*border: 1px solid green;*/
   padding: 1em;
   text-align: center;
   animation: pulse 1s;

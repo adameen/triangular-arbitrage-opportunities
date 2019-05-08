@@ -6,25 +6,21 @@ $(document).on('turbolinks:load', function() {
   var pathname = window.location.pathname;
   if(pathname === "/realtime" || pathname === "/"){
 
-
-    console.log("Text from realtime.js");
-
     if(App.realtime){
-      console.log("App.realtime already EXISTS");
+      console.log("[realtime.js] App.realtime already exists");
       App.cable.subscriptions.remove(App.realtime);
       App.realtime = null;
     }
     setTimeout(function(){
-      console.log("Creating App.realtime");
+      console.log("[realtime.js] Creating App.realtime");
       // everyone connects to Bittrex by default
       App.realtime = App.cable.subscriptions.create({channel: "BittrexChannel"}, {received: receivedData});
-      console.log("Just created App.realtime");
     },500);
 
 
     // ================= FUNCTIONS =================
     function receivedData(data) {
-      console.log("***** SOMETHING CAME FROM CHANNEL *****");
+      console.log("[realtime.js] Received data from channel");
 
       if(data.error != ""){
         showError(data);
@@ -48,7 +44,7 @@ $(document).on('turbolinks:load', function() {
       }
 
       let classOfNumber = "";
-      console.log("===== DATA BEGINNING =====");
+      console.log("[realtime.js] Data start here");
 
       for (let triangle of listOfTriangles) {
         console.log(triangle[0] + " ---- " + triangle[1].profit);
@@ -56,7 +52,7 @@ $(document).on('turbolinks:load', function() {
                                : classOfNumber = "negative-number";
         table += getTableRow(triangle, classOfNumber);
       }
-      console.log("===== DATA END =====");
+      console.log("[realtime.js] Data end here");
       $('#realtimeTable').show();
       $('#realtimeTable').html(table);
       $('div.error-container').hide();
@@ -117,25 +113,21 @@ $(document).on('turbolinks:load', function() {
       // There must be some delay between subscribing and unsubscribing
       // especially when user wants to subscribe the same channel.
       setTimeout(function(){
+        console.log("[realtime.js] Just subscribed to a channel");
         App.realtime = App.cable.subscriptions.create({channel: checkedChannel},
                                                       {received: receivedData});
-        console.log("after new initialization:");
         console.log(App.realtime);
       },500);
     });
 
-
-
-
   }
 });
 
-
+// ================= EVENTS TRIGGERED =================
 
 // User clicks on History button.
 $(document).on('click', '.button-history', function(event) {
-  console.log("============== History button clicked =============");
   App.cable.subscriptions.remove(App.realtime);
   App.realtime = null;
-  console.log("============== UNSUBSCRIBED NOW =============");
+  console.log("[realtime.js] Just unsubscribed from a channel (History button clicked)");
 });

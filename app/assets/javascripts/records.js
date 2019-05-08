@@ -6,9 +6,6 @@ $(document).on('turbolinks:load', function() {
   var pathname = window.location.pathname;
   if(pathname === "/records"){
 
-
-    console.log("Text from records.js");
-
     setDatePicker();
     // dataset_name: dataset
     let myDatasets = {};
@@ -149,8 +146,6 @@ $(document).on('turbolinks:load', function() {
     $("div.input-datepicker input[type=text]").change(function() {
         $('div.input-datepicker input[type="submit"]').attr("disabled", false);
     });
-
-
 
   }
 });
