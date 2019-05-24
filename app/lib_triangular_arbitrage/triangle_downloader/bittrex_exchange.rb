@@ -36,8 +36,15 @@ module TriangleDownloader
 
       @html_body_parsed["result"].each do |pair_JSON|
         pair_name = pair_JSON["MarketName"]
-        @pairs[pair_name].bid_best = pair_JSON["Bid"]
-        @pairs[pair_name].ask_best = pair_JSON["Ask"]
+        bid = pair_JSON["Bid"]
+        ask = pair_JSON["Ask"]
+        if bid == 0.0 || bid == nil || ask == 0.0 || ask == nil
+          @pairs[pair_name].is_valid = false
+          next
+        end
+        @pairs[pair_name].is_valid = true
+        @pairs[pair_name].bid_best = bid
+        @pairs[pair_name].ask_best = ask
       end
     end
 

@@ -11,6 +11,8 @@ module TriangleDownloader
     # number of triangles passed to client (first half are the best ones
     # and second half are the worst ones, sorted in descending order)
     RESULT_LENGTH = 40
+    # if provided (downloaded) bid/ask prices are 0.000 or nil
+    INVALID_PROFIT = -99999.0
 
     # ------------- PUBLIC METHODS -------------
     def execute
@@ -71,17 +73,39 @@ module TriangleDownloader
       end
     end
 
+    # Checks if a triangle is valid – has all its pairs valid.
+    def isTriangleValid(triangle)
+      triangle.triangle_pairs.each do |p|
+        if !p.is_valid
+          puts "[exchange.rb] Pair #{p.name} is invalid."
+          return false
+        end
+      end
+      return true
+    end
+
     # Computes profit of all triangles, sort it in descending order
     # and saves top 20 and 20 worst of them in @triangle_profits array.
     def triangulate
+      invalid_count = 0
       @triangles.each do |name, obj|
-        obj.profit = compute_triangle_profit(obj)
+        if isTriangleValid(obj)
+          obj.profit = compute_triangle_profit(obj)
+        else
+          obj.profit = INVALID_PROFIT
+          invalid_count += 1
+          puts "[exchange.rb] Triangle #{name} has invalid profit."
+        end
       end
 
       @triangle_profits = @triangles.sort{ |x, y|
         y[1].profit <=> x[1].profit
       }
-      #now it is array of arrays [[triangle_name, object],....]
+      #now @triangle_profits is array of arrays [[triangle_name, object],....]
+
+      # erase elements with invalid profit
+      @triangle_profits.slice!(@triangles.length-invalid_count..@triangles.length-1)
+      # leave only first 20 and last 20 elements - slice the others
       @triangle_profits.slice!(RESULT_LENGTH/2..@triangles.length-RESULT_LENGTH/2-1)
     end
 

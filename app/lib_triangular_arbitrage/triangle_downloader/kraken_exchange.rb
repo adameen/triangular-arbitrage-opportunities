@@ -70,8 +70,15 @@ module TriangleDownloader
 
       @html_body_parsed["result"].each do |pair_name, pair_obj|
         nice_name = @pairs_dictionary[pair_name]
-        @pairs[nice_name].bid_best = pair_obj["b"][0].to_f
-        @pairs[nice_name].ask_best = pair_obj["a"][0].to_f
+        bid = pair_obj["b"][0].to_f
+        ask = pair_obj["a"][0].to_f
+        if bid == 0.0 || bid == nil || ask == 0.0 || ask == nil
+          @pairs[nice_name].is_valid = false
+          next
+        end
+        @pairs[nice_name].is_valid = true
+        @pairs[nice_name].bid_best = bid
+        @pairs[nice_name].ask_best = ask
       end
     end
 
