@@ -39,7 +39,7 @@ Cryptocurrency Triangular Arbitrage Opportunities web application computes poten
 
 ## Add a new cryptocurrency exchange
 1. Generate a new channel representing the new cryptocurrency exchange. E.g. for Binance it would be:  
-`rails generate channel BinanceChannel`
+`rails generate channel BinanceChannel`  
 Afterwards, set the corresponding file in `app/channels/` the same way the other channel files are set.
 2. Create a new class representing the cryptocurrency exchange in directory:  
 `app/lib_triangular_arbitrage/triangle_downloader/`  
