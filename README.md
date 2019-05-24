@@ -37,6 +37,14 @@ Cryptocurrency Triangular Arbitrage Opportunities web application computes poten
 `bin/rails server`
 2. Connect with web browser to: http://localhost:3000
 
+## Add a new cryptocurrency exchange
+1. Generate a new channel representing the new cryptocurrency exchange. E.g. for Binance it would be:  
+`rails generate channel BinanceChannel`
+Afterwards, set the corresponding file in `app/channels/` the same way the other channel files are set.
+2. Create a new class representing the cryptocurrency exchange in directory `app/lib_triangular_arbitrage/triangle_downloader/`. Name it as the other files (e.g. `binance_exchange.rb`). The new class needs to inherit from `Exchange` class and implement all the necessary methods.
+3. Add a new HTML radio button in file `app/views/realtime/index.html.erb` so a user can choose the cryptocurrency exchange on the website.
+4. Add the cryptocurrency exchange in the initializer (method `prepare_all_channels`) in file `config/initializers/triangular_arbitrage_initializer.rb` the same way as the other cryptocurrency exchanges are added.
+
 ## GUI Snapshots
 ### Realtime page
 ![Realtime page](https://drive.google.com/uc?id=1AuE2KnpWHziUlkFLc7LteRoTe7S_lz8B)
